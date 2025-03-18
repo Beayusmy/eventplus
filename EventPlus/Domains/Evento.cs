@@ -5,32 +5,28 @@ using Microsoft.EntityFrameworkCore;
 namespace EventPlus.Domains
 {
     [Table("Evento")]
-    [Index(nameof(Evento), IsUnique = true)]
     public class Evento
     {
         [Key]
-        public int IdComentario { get; set; }
+        public Guid IdEvento { get; set; }
 
-        [Required(ErrorMessage = "O campo Exibe é obrigatório.")]
-        public bool Exibe { get; set; }
+        [Required(ErrorMessage = "O nome do evento é obrigatório."), Column(TypeName = "VARCHAR(255)")]
+        public string? NomeEvento { get; set; }
 
-        [Required(ErrorMessage = "A descrição do comentário é obrigatória."), Column(TypeName = "TEXT")]
-        public string? Descricao { get; set; }
+        [Required(ErrorMessage = "A data do evento é obrigatória.")]
+        public DateTime DataEvento { get; set; }
 
-        [ForeignKey("Usuario")]
-        public int IdUsuario { get; set; }
-        public Usuario? Usuario { get; set; }
+        public Guid IdTipoEvento { get; set; }
 
-        [ForeignKey("Evento")]
-        public int IdEvento { get; set; }
-        public Evento? evento { get; set; }
+        [ForeignKey("IdTipoEvento")]
+        public TipoEvento? TipoEvento { get; set; }
 
-        //Adicionar instituicao
+        public Guid IdInstituicao { get; set; }
 
+        [ForeignKey("IdInstituicao")]
         public Instituicao? Instituicao { get; set; }
 
-
-        public PresencasEvento? PresencasEventos { get; set; }  
+        public PresencasEvento? PresencasEvento { get; set; }
 
     }
 }

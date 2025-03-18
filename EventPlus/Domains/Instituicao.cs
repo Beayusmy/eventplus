@@ -9,7 +9,7 @@ namespace EventPlus.Domains
     public class Instituicao
     {
         [Key]
-        public int IdInstituicao { get; set; }
+        public Guid IdInstituicao { get; set; }
 
         [Required(ErrorMessage = "O nome fantasia da instituição é obrigatório."), Column(TypeName = "VARCHAR(255)")]
         public string? NomeFantasia { get; set; }

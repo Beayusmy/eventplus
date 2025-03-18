@@ -7,29 +7,21 @@ namespace EventPlus.Domains
     public class ComentariosEvento
     {
         [Key]
-        public Guid IdComentarioEvento { get; set; }
+        public int IdComentario { get; set; }
 
-        [Column(TypeName = "BIT")]
-        [Required]
+        [Required(ErrorMessage = "O campo Exibe é obrigatório.")]
         public bool Exibe { get; set; }
 
-        //ref.tabela Uusario
-        [Required(ErrorMessage = "Usuario obrigatório!")
-        public Guid IdUsuario { get; set; }
+        [Required(ErrorMessage = "A descrição do comentário é obrigatória."), Column(TypeName = "TEXT")]
+        public string? Descricao { get; set; }
 
         [ForeignKey("IdUsuario")]
-
+        public int IdUsuario { get; set; }
         public Usuario? Usuario { get; set; }
 
-        //ref.tabela Evento
-
-        [Required(ErrorMessage = "Evento obrigatório!")
-
-        public Guid IdEvento { get; set; }
-
         [ForeignKey("IdEvento")]
-
-        public Evento? evento { get; set; }
+        public int IdEvento { get; set; }
+        public Evento? Evento { get; set; }
 
     }
 }

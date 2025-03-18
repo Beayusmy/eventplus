@@ -9,7 +9,7 @@ namespace EventPlus.Domains
     public class Usuario
     {
         [Key]
-        public int IdUsuario { get; set; }
+        public Guid IdUsuario { get; set; }
 
         [Required(ErrorMessage = "O nome é obrigatório."), Column(TypeName = "VARCHAR(255)")]
         public string? Nome { get; set; }
@@ -22,7 +22,7 @@ namespace EventPlus.Domains
         [StringLength(60, MinimumLength = 5, ErrorMessage = "A senha deve conter entre 5 e 30 caracteres")]
         public string? Senha { get; set; }
 
-        [ForeignKey("TipoUsuario")]
+        [ForeignKey("IdTipoUsuario")]
         public string? IdTipoUsuario { get; set; }
         public TipoUsuario? TipoUsuario { get; set; }
 
