@@ -6,11 +6,11 @@ namespace EventPlus.Domains
     [Table("TipoEvento")]
     public class TipoEvento
     {
+        public static object TipoEventoTitulo { get; internal set; }
         [Key]
         public Guid IdTipoEvento { get; set; }
 
         [Required(ErrorMessage = "O título do tipo de evento é obrigatório."), Column(TypeName = "VARCHAR(255)")]
         public string? TituloTipoEvento { get; set; }
-
     }
 }
